@@ -30,6 +30,7 @@ pub enum ProfilingType {
     AllocObjects,
     InuseSpace,
     InuseObjects,
+    GcTime,
 }
 
 impl ProfilingType {
@@ -41,6 +42,7 @@ impl ProfilingType {
             ProfilingType::AllocObjects => ("alloc_objects", "count"),
             ProfilingType::InuseSpace => ("inuse_space", "bytes"),
             ProfilingType::InuseObjects => ("inuse_objects", "count"),
+            ProfilingType::GcTime => ("gc_time", "nanoseconds"),
         }
     }
 
@@ -53,6 +55,7 @@ impl ProfilingType {
             | ProfilingType::AllocObjects
             | ProfilingType::InuseSpace
             | ProfilingType::InuseObjects => ("space", "bytes"),
+            ProfilingType::GcTime => ("gc_time", "nanoseconds"),
         }
     }
 
@@ -62,7 +65,8 @@ impl ProfilingType {
             ProfilingType::AllocSpace
             | ProfilingType::AllocObjects
             | ProfilingType::InuseSpace
-            | ProfilingType::InuseObjects => 1,
+            | ProfilingType::InuseObjects
+            | ProfilingType::GcTime => 1,
         }
     }
 }
